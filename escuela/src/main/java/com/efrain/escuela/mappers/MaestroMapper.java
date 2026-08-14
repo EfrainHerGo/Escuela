@@ -3,6 +3,7 @@ package com.efrain.escuela.mappers;
 import com.efrain.escuela.dto.Maestro.MaestroRequest;
 import com.efrain.escuela.dto.Maestro.MaestroResponse;
 import com.efrain.escuela.dto.datos.DatosCurso;
+import com.efrain.escuela.dto.grupo.MaestroGrupoResponse;
 import com.efrain.escuela.entities.Grupo;
 import com.efrain.escuela.entities.Maestro;
 import lombok.AllArgsConstructor;
@@ -41,6 +42,14 @@ public class MaestroMapper implements  CommonMapper<MaestroRequest, MaestroRespo
                 entidad.getEmail(),
                 entidad.getTelefono(),
                 cursos
+        );
+    }
+    public MaestroGrupoResponse entidadAGrupoResponse(Maestro maestro) {
+        if (maestro == null) return null;
+        return new MaestroGrupoResponse(
+                maestro.getNombre(),
+                maestro.getEmail(),
+                maestro.getTelefono()
         );
     }
 

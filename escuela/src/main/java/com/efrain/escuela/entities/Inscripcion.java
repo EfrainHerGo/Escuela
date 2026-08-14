@@ -41,4 +41,8 @@ public class Inscripcion {
     @OneToOne(mappedBy = "inscripcion", fetch = FetchType.EAGER)
     private Calificacion calificacion;
 
+    public void actualizar(Alumno alumno, Grupo grupo) {
+        this.alumno = alumno;
+        this.grupo = grupo;
+    }
 }
