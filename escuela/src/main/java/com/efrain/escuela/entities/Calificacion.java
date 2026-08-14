@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.text.Bidi;
 import java.time.LocalDate;
 
 @Entity
@@ -31,4 +32,12 @@ public class Calificacion {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_INSCRIPCION", nullable = false, unique = true)
     private Inscripcion inscripcion;
+
+    public void actualizar(BigDecimal calificacion, Inscripcion inscripcion){
+        this.calificacion = calificacion;
+        this.inscripcion = inscripcion;
+    }
+    public void asignarinscripcion(Inscripcion inscripcion){
+        this.inscripcion = inscripcion;
+    }
 }

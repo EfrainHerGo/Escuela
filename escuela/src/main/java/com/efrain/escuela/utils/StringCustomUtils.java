@@ -5,8 +5,8 @@ import java.time.format.DateTimeFormatter;
 
 public class StringCustomUtils {
 
-    private static final DateTimeFormatter FORMATOFECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
-
+    public static final DateTimeFormatter FORMATOFECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static final DateTimeFormatter FORMATOHORA = DateTimeFormatter.ofPattern("HH:mm");
     public static void validarNoVacio(String texto, String mensaje) {
         if (texto == null || texto.isBlank())
             throw new IllegalArgumentException(mensaje);
@@ -16,6 +16,10 @@ public class StringCustomUtils {
         validarNoVacio(texto, mensaje);
 
         if (texto.length() < min || texto.length() > max)
+            throw new IllegalArgumentException(mensaje);
+    }
+    public static void validarCapacidad(Integer cantidad, Integer min, Integer max, String mensaje){
+        if (cantidad <= 35 || cantidad > 0)
             throw new IllegalArgumentException(mensaje);
     }
 

@@ -3,7 +3,9 @@ package com.efrain.escuela.service.maestros;
 import com.efrain.escuela.dto.Maestro.MaestroRequest;
 import com.efrain.escuela.dto.Maestro.MaestroResponse;
 import com.efrain.escuela.entities.Maestro;
+import com.efrain.escuela.exceptions.EntidadRelacionadaException;
 import com.efrain.escuela.mappers.MaestroMapper;
+import com.efrain.escuela.repositories.GrupoRespository;
 import com.efrain.escuela.repositories.MaestroRepository;
 import com.efrain.escuela.service.CrudService;
 import com.efrain.escuela.utils.ServiceUtils;
@@ -20,7 +22,7 @@ import java.util.List;
 @Slf4j
 
 public class MaestroServiceImpl implements MaestroService {
-
+    private final GrupoRespository grupoRespository;
     private final MaestroMapper maestroMapper;
     private final MaestroRepository maestroRepository;
 
@@ -67,6 +69,10 @@ public class MaestroServiceImpl implements MaestroService {
     public void eliminar(Long id) {
         Maestro maestro = obtenerMaestro(id);
         log.info("Eliminar maestro por id: {}", id);
+        if (grupoRespository.existsByMaestroId(id))
+            throw new EntidadRelacionadaException(
+                    "No se puede eliminar mmaestro porque tiene grupos"
+            );
         maestroRepository.delete(maestro);
         log.info("mestro {} eliminado correctamente", maestro.getNombre());
     }
@@ -81,7 +87,7 @@ public class MaestroServiceImpl implements MaestroService {
             throw new IllegalArgumentException("Ya existe un maestro registradi con el email: " + request.email());
         log.info("Validando telefono unico...");
         if (maestroRepository.existsByTelefono(request.email().trim()))
-            throw new IllegalArgumentException("Ya existe un maestro registradi con el email: " + request.email());
+            throw new IllegalArgumentException("Ya existe un maestro registradi con el telefono: " + request.email());
 
     }
     private void validarCambiosUnicos(MaestroRequest request, Long id){

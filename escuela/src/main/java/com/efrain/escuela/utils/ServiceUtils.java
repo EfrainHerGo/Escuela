@@ -14,7 +14,7 @@ public class ServiceUtils {
         String nombreEntidad = clase.getSimpleName();
         log.info("Buscando {} con id: ", nombreEntidad, id);
         return repository.findById(id).orElseThrow(
-                () -> new RecursoNoEncontradoExceptions(nombreEntidad + "no encontrado con id: " + id)
+                () -> new RecursoNoEncontradoExceptions(nombreEntidad + " no encontrado con id: " + id)
         );
     }
 }

@@ -1,6 +1,6 @@
 package com.efrain.escuela.dto.cursos;
 
-import jakarta.persistence.ManyToOne;
+
 import jakarta.validation.constraints.*;
 
 public record CursoRequest(
@@ -16,4 +16,5 @@ public record CursoRequest(
         @Max(value = 10, message = "los creditos maximo son 10")
         Integer creditos
 ) {
+
 }

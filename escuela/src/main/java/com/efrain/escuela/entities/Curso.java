@@ -1,6 +1,7 @@
 package com.efrain.escuela.entities;
 
 
+import com.efrain.escuela.utils.StringCustomUtils;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,4 +30,16 @@ public class Curso {
 
     @Column (name = "CREDITOS", nullable = false)
     private Integer creditos;
+
+    public void validarDatos( String nombre) {
+        StringCustomUtils.validarTamanio(nombre, 1, 50,
+                "El nombre es requerido y debe ser de 1 a 50 caracteres");
+    }
+    public void actualizar(String nombre, String descripcion, Integer creditos){
+        validarDatos(nombre);
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.creditos = creditos;
+    }
+
 }

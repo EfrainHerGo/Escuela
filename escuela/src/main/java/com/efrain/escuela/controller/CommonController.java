@@ -27,7 +27,7 @@ public class CommonController <RQ, RS, S extends CrudService<RQ, RS>>{
     public ResponseEntity<RS> obtenerPorId(@PathVariable Long id){
         return ResponseEntity.ok(service.obtenerPorId(id));
     }
-    @PostMapping("/registrar")
+    @PostMapping
     public ResponseEntity<RS> registrar(@Valid @RequestBody RQ request){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.registrar(request));
     }

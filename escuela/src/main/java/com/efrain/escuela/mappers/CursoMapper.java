@@ -3,6 +3,7 @@ package com.efrain.escuela.mappers;
 import com.efrain.escuela.dto.cursos.CursoRequest;
 import com.efrain.escuela.dto.cursos.CursoResponse;
 import com.efrain.escuela.dto.datos.DatosCurso;
+import com.efrain.escuela.dto.grupo.CursoGrupoResponse;
 import com.efrain.escuela.entities.Curso;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +32,14 @@ public class CursoMapper implements CommonMapper<CursoRequest, CursoResponse, Cu
                 entidad.getNombre(),
                 descripcion,
                 entidad.getCreditos()
+        );
+    }
+    public CursoGrupoResponse entidadAGrupoResponse(Curso curso) {
+        if (curso == null) return null;
+        return new CursoGrupoResponse(
+                curso.getNombre(),
+                curso.getDescripcion(),
+                curso.getCreditos()
         );
     }
 

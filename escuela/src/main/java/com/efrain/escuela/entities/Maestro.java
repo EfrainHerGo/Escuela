@@ -37,11 +37,11 @@ public class Maestro {
 
     @Column(name = "TELEFONO", nullable = false, length = 10, unique = true)
     private String telefono;
-
+    @Builder.Default
     @OneToMany(mappedBy = "maestro", fetch = FetchType.LAZY)
     private List<Grupo> grupos = new ArrayList<>();
 
-    public void validarDatos(String apellidoPaterno, String nombre, String apellidoMaterno, String email, String telefono) {
+    public void validarDatos( String nombre, String apellidoPaterno, String apellidoMaterno, String email, String telefono) {
         StringCustomUtils.validarTamanio(nombre, 1, 50,
                 "El nombre es requerido y debe ser de 1 a 50 caracteres");
         StringCustomUtils.validarTamanio(apellidoPaterno, 1, 50,
